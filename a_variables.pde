@@ -24,6 +24,7 @@ Serial SerialPort;
 boolean BTConnected = false;
 
 enum Modes {
+  NONE,
   TIME_TRIAL,
   RACE,
   RACE_COUNTDOWN,

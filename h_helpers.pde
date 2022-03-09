@@ -27,28 +27,27 @@ void Reset(Modes mode, boolean init)
   fill( #000000 );
   stroke( #000000 );
   rect( 0, LaneBlockY+XPadding, WindowWidth, WindowHeight );
+  ClearBoard(); 
   switch(Mode)
   {
+    case NONE:
+      break;
     case FREE:
-      ClearBoard();
       PrintClock( 0 );
       PrintLaneLabel(0);
       break;
     case RACE:
-      ClearBoard();
       PrintClock( 0 );
       PrintLaneLabel(1);
       PrintLaneLabel(2);
       break;
     case RACE_COUNTDOWN:
-      ClearBoard(); 
       break;
     case TIME_TRIAL:
+      PrintClock( 0 );
       PrintLaneLabel(0);
       break;
-  }
-  
-  
+  }  
 }
 boolean StartTiming()
 {
@@ -87,7 +86,6 @@ void AddLap(int lane, int lapNr, int lapTime)
       break;
   }
   PlayByPass();
-  //PrintLapRow(lane, lap);
   PrintLapRows(lane);
 }
 
@@ -183,21 +181,17 @@ void keyPressed() {
     case 49://1
       SerialWrite('1');
       Reset(Modes.TIME_TRIAL, false);
-      ClearBoard();
       break;
     case 50://2
       SerialWrite('2');
       Reset(Modes.RACE, false);
-      ClearBoard();
       break;
     case 51://3
       SerialWrite('2');
       Reset(Modes.RACE_COUNTDOWN, false);
-      ClearBoard();
       break;
     case 52://4
-      Reset(Modes.FREE, false);   
-      ClearBoard();
+      Reset(Modes.FREE, false);
       break;
     case 81://Q
       SerialDisconnect();
@@ -230,7 +224,7 @@ void SerialConnect(int port)
   SerialDisconnect();
   try{
     String portName = Serial.list()[port];
-    println("trying to connect to "+portName);
+    println("Trying to connect to "+portName);
     SerialPort = new Serial(this, portName, 9600);
     SerialPort.clear();
     SerialPort.bufferUntil('\n');

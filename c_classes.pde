@@ -19,6 +19,7 @@ class Lane {
   }
   void Reset()
   {
+    BestLap = null;
     for (int i = Laps.size() - 1; i >= 0; i--) {
       Laps.remove(i);
     }
