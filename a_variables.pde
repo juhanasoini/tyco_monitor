@@ -36,15 +36,17 @@ Lane LaneT;
 Lane Lane1;
 Lane Lane2;
 
-int LaneBlockY = 400;
+int LaneBlockY = 420;
 int LaneBlockOneX = XPadding;
 int LaneBlockTwoX = 552;
 int LaneBlockWidth = 472;
+int VerticalLoopStart = 0;
+int HorizontalLoopStart = 0;
 
 PShape logo;
 String Font = "Courier New";
 String BoldFont = "Courier New Lihavoitu";
 
-MidiBus MBus; // The MidiBus
+MidiBus MBus;
 Minim Minim;
 AudioPlayer Player;

@@ -33,17 +33,21 @@ void Reset(Modes mode, boolean init)
     case NONE:
       break;
     case FREE:
+      LaneBlockY = 420;
       PrintClock( 0 );
       PrintLaneLabel(0);
       break;
     case RACE:
+      LaneBlockY = 350;
       PrintClock( 0 );
       PrintLaneLabel(1);
       PrintLaneLabel(2);
       break;
     case RACE_COUNTDOWN:
+      LaneBlockY = 350;
       break;
     case TIME_TRIAL:
+      LaneBlockY = 350;
       PrintClock( 0 );
       PrintLaneLabel(0);
       break;
@@ -86,7 +90,7 @@ void AddLap(int lane, int lapNr, int lapTime)
       break;
   }
   PlayByPass();
-  PrintLapRows(lane);
+  PrintLapRows(lane, false);
 }
 
 void SetWinner(int laneNr)
@@ -162,6 +166,14 @@ void keyPressed() {
   
   switch(keyCode)
   {
+    case 17: // Ctrl
+      if(Mode == Modes.FREE && TimingStarted)
+      {
+        int intervalTime = millis() - PreviousFreeTimingLapTimed;
+        LaneT.AddInterval(LaneT.LapCount+1, intervalTime);
+        PrintIntervals(LaneT, false);
+      }
+      break;
     case 32://Space
       if(Mode == Modes.FREE && TimingStarted)
       {
@@ -173,6 +185,34 @@ void keyPressed() {
       else if(Mode == Modes.FREE)
         StartTiming();
       
+      break;
+    case 37: //Left
+      if(Mode == Modes.FREE || Mode == Modes.TIME_TRIAL)
+      {
+        HorizontalLoopStart++;
+        PrintIntervals(LaneT, true);
+      }
+      break;
+    case 38: //Up
+      if(Mode == Modes.FREE || Mode == Modes.TIME_TRIAL)
+      {
+        VerticalLoopStart--;
+        PrintLapRows(0, true);
+      }
+      break;
+    case 39: //Right
+      if(Mode == Modes.FREE || Mode == Modes.TIME_TRIAL)
+      {
+        HorizontalLoopStart--;
+        PrintIntervals(LaneT, true);
+      }
+      break;
+    case 40: //Down
+      if(Mode == Modes.FREE || Mode == Modes.TIME_TRIAL)
+      {
+        VerticalLoopStart++;
+        PrintLapRows(0, true);
+      }
       break;
     case ENTER:
       if(Mode == Modes.FREE)

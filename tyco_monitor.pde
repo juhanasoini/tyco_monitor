@@ -1,10 +1,11 @@
 import processing.serial.*;
 import ddf.minim.*;
 import themidibus.*;
+import java.util.*;
 void setup() 
 {
-  //fullScreen();
-  size(1324, 768);
+  fullScreen();
+  //size(1324, 768);
   WindowWidth = width;
   WindowHeight = height;
   

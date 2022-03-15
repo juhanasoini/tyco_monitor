@@ -48,15 +48,11 @@ void HandleCountdown(int phase)
 
 void RedCircle( int x, int y )
 {
-  //imageMode(CENTER);
-  //image( Red, x, y );
   fill( 255, 26, 0 );
   circle(x, y, 280);
 }
 void GreenCircle( int x, int y )
 {
-  //imageMode(CENTER);
-  //image( Green, x, y );
   fill( 0, 255, 0 );
   circle(x, y, 280);
 }
