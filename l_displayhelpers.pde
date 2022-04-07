@@ -158,7 +158,6 @@ void PrintPortList()
   int asc = 65;
   for(int i=0;i<portsCount;i++)
   {
-    println(char(asc));
     char c = char(asc);
     consoleMsg += c+": ";
     consoleMsg += Serial.list()[i]+"\n";

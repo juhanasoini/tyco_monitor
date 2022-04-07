@@ -51,7 +51,9 @@ void Reset(Modes mode, boolean init)
       PrintClock( 0 );
       PrintLaneLabel(0);
       break;
-  }  
+  }
+  if(mode != Modes.RACE_COUNTDOWN)
+    PlayInit();
 }
 boolean StartTiming()
 {
@@ -156,16 +158,16 @@ void WindowSetup( boolean startup )
 }
 
 void keyPressed() {
-  println(key, keyCode);
   if(keyCode>=65 && keyCode <=74)
   {
     int selKey = keyCode-65;
     SerialConnect(selKey);
     return;
   }
-  
+  println(keyCode);
   switch(keyCode)
   {
+    
     case 17: // Ctrl
       if(Mode == Modes.FREE && TimingStarted)
       {
@@ -239,6 +241,9 @@ void keyPressed() {
     case 82://R
       SerialWrite('R');
       Reset(Mode, false); 
+      break;
+    case 87://W
+      PlaySuperFin();
       break;
   }
 }

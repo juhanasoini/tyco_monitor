@@ -10,7 +10,7 @@ void draw()
     }
     else
     {
-      if((frameCount - CountdownStartedAt) % 60 == 0)
+      if((frameCount - CountdownStartedAt) % 45 == 0)
       {
         CountDownPhase--;
         HandleCountdown(CountDownPhase);

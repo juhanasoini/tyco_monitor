@@ -4,8 +4,8 @@ import themidibus.*;
 import java.util.*;
 void setup() 
 {
-  fullScreen();
-  //size(1324, 768);
+  //fullScreen();
+  size(1324, 768);
   WindowWidth = width;
   WindowHeight = height;
   
@@ -13,7 +13,6 @@ void setup()
   
   Minim = new Minim(this);
   MBus = new MidiBus(this, -1, 1);
-  PlayInit();
   
   LaneT = new Lane(0);
   Lane1 = new Lane(1);

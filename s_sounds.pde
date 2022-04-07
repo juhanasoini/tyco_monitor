@@ -27,6 +27,13 @@ void PlayByPass()
   Player.cue( 0 );
   Player.play();
 }
+void PlaySuperFin()
+{
+  PlayerStop();
+  Player = Minim.loadFile("sounds/Top-Gun.mp3");
+  Player.cue( 12000 );
+  Player.play();
+}
 
 void PlayerStop()
 {
